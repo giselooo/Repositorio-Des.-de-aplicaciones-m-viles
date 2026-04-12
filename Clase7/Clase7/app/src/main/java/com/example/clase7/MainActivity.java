@@ -1,5 +1,6 @@
 package com.example.clase7;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,9 +15,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    // Cambiamos el tipo para poder usar el agregar
+    // Cambiar el tipo para poder usar el agregar
     MiAdaptador adaptador;
     String miTexto = ""; // variable como en Fibonacci
 
@@ -31,21 +34,27 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        String[] misDatos = new String[]{
-                "Mario",
-                "Luigi",
-                "Peach",
-                "Browser"
-        };
-
-        adaptador = new MiAdaptador(misDatos);
 
         RecyclerView recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adaptador);
+
+        MiCliente miCliente = new MiCliente();
 
 
-    // Como en fibonacci jeje
+     //mandarlo separado
+        AsyncTask.execute(() -> {
+                ArrayList<String> misDatos = miCliente.getElements();
+                runOnUiThread(() -> {
+                    adaptador = new MiAdaptador(misDatos);
+                    recyclerView.setAdapter(adaptador);
+                });
+        });
+
+
+
+
+
+    // Como en fibonacci jeje | mapeo de datos xml a codigo java
     EditText edtInput = findViewById(R.id.edtInput);
     Button btnLista = findViewById(R.id.btnLista);
 
@@ -61,11 +70,25 @@ public class MainActivity extends AppCompatActivity {
     });
 
         btnLista.setOnClickListener(v -> {
-        if (!miTexto.isEmpty()) {
-            adaptador.agregarNombre(miTexto); // Usamos el metodo que se hizo
-            edtInput.setText(""); // Limpiar para el siguiente
-            miTexto = "";
+            if (!miTexto.isEmpty()) {
+                String nombreNuevo = miTexto; // Guardamos el nombre
+
+                AsyncTask.execute(() -> {
+                    // 1. Lo mandamos a la nube (Railway)
+                    miCliente.addCharacter(nombreNuevo);
+
+                    // 2. IMPORTANTE: Regresamos al hilo principal para mover la interfaz
+                    runOnUiThread(() -> {
+                        // Esto es lo que hace que aparezca en tu celular:
+                        adaptador.agregarNombre(nombreNuevo);
+
+                        // Limpiamos el campo
+                        edtInput.setText("");
+                        miTexto = "";
+                    });
+                });
+            }
+        });
+
         }
-    });
-}
-}
+    }

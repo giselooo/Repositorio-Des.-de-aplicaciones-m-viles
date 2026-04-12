@@ -3,7 +3,6 @@ package com.example.clase7;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +13,8 @@ public class MiAdaptador extends RecyclerView.Adapter<MiViewHolder> {
 
     private ArrayList<String> localDataSet; /* cambie el string por un arraylist*/
 
-    public MiAdaptador(String[] dataSet) {
-        localDataSet = new ArrayList<>(Arrays.asList(dataSet)); //Hacer que el arreglo se convierta en lista grande
+    public MiAdaptador(ArrayList<String> dataSet) {
+        this.localDataSet = dataSet; //hacer que la lista sea grande
     }
 
 

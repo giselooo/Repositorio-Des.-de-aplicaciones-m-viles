@@ -19,11 +19,11 @@
         android:id="@+id/btnLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="72dp"
         android:text="Agregar a la lista"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -31,8 +31,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLista"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="8dp"
         android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btnLista"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
