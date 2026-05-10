@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "com.attendance.app-mergeDebugResources-46:/layout/item_asistencia.xml",
+        "source": "com.attendance.app-main-49:/layout/item_asistencia.xml"
+    },
+    {
+        "merged": "com.attendance.app-mergeDebugResources-46:/layout/fragment_asistencias.xml",
+        "source": "com.attendance.app-main-49:/layout/fragment_asistencias.xml"
+    },
+    {
+        "merged": "com.attendance.app-mergeDebugResources-46:/layout/activity_main.xml",
+        "source": "com.attendance.app-main-49:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.attendance.app-mergeDebugResources-46:/layout/item_alumno.xml",
+        "source": "com.attendance.app-main-49:/layout/item_alumno.xml"
+    },
+    {
+        "merged": "com.attendance.app-mergeDebugResources-46:/layout/item_curso.xml",
+        "source": "com.attendance.app-main-49:/layout/item_curso.xml"
+    },
+    {
+        "merged": "com.attendance.app-mergeDebugResources-46:/layout/fragment_cursos.xml",
+        "source": "com.attendance.app-main-49:/layout/fragment_cursos.xml"
+    },
+    {
+        "merged": "com.attendance.app-mergeDebugResources-46:/layout/fragment_alumnos.xml",
+        "source": "com.attendance.app-main-49:/layout/fragment_alumnos.xml"
+    }
+]
