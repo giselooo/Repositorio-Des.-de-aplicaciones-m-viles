@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_main.xml — Layout de la simulación de tráfico aéreo v2
+
+    Estructura visual:
+    ┌──────────────────────────────────────────┐
+    │  Paso: 0          Colisiones: 0          │  ← Barra de métricas
+    │  Grid 40×40  ·  750 aviones  ·  Hist: 0 │  ← Info de sesión
+    ├──────────────────────────────────────────┤
+    │                                          │
+    │          TableroView (Canvas)            │  ← Grid con panning y zoom
+    │   ← arrastra para navegar / pellizca →  │
+    │                                          │
+    ├──────────────────────────────────────────┤
+    │  [↺ REINICIAR]  [← ATRÁS]  [ADELANTE →] │  ← Controles
+    └──────────────────────────────────────────┘
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0D1117"
+    tools:context=".MainActivity">
+
+    <!-- ── Barra de métricas ────────────────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#161B22"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp"
+        android:elevation="6dp">
+
+        <TextView
+            android:id="@+id/tvPasoActual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Paso: 0"
+            android:textColor="#58A6FF"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:gravity="start"/>
+
+        <TextView
+            android:id="@+id/tvColisiones"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Colisiones: 0"
+            android:textColor="#F85149"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:gravity="end"/>
+
+    </LinearLayout>
+
+    <!-- ── Barra de información de sesión ───────────────────────────────── -->
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#161B22"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="10dp"
+        android:text="Grid --×--  ·  -- aviones  ·  Historial: 0"
+        android:textColor="#8B949E"
+        android:textSize="12sp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:elevation="6dp"/>
+
+    <!-- ── Divisor ───────────────────────────────────────────────────────── -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#21262D"/>
+
+    <!-- ── Tablero (ocupa todo el espacio restante) ─────────────────────── -->
+    <!--
+        La Custom View TableroView recibe gestos de arrastre (panning) y
+        pellizco (zoom). No necesita un ScrollView externo: la Matrix interna
+        gestiona la transformación del canvas.
+    -->
+    <com.example.clase13.TableroView
+        android:id="@+id/tableroView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#0D1117"/>
+
+    <!-- ── Divisor ───────────────────────────────────────────────────────── -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#21262D"/>
+
+    <!-- ── Panel de controles ─────────────────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#161B22"
+        android:padding="10dp"
+        android:gravity="center"
+        android:elevation="6dp">
+
+        <!-- Reiniciar: regenera grid y aviones aleatoriamente -->
+        <Button
+            android:id="@+id/btnReiniciar"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="↺"
+            android:textSize="20sp"
+            android:textColor="#C9D1D9"
+            android:backgroundTint="#21262D"
+            android:contentDescription="Reiniciar simulación"/>
+
+        <!-- Atrás: restaura estado anterior desde la pila -->
+        <Button
+            android:id="@+id/btnAtras"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:layout_marginEnd="6dp"
+            android:text="← ATRÁS"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="#C9D1D9"
+            android:backgroundTint="#30363D"
+            android:enabled="false"
+            android:alpha="0.38"/>
+
+        <!-- Adelante: avanza un paso -->
+        <Button
+            android:id="@+id/btnAdelante"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:text="ADELANTE →"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1F6FEB"/>
+
+    </LinearLayout>
+
+</LinearLayout>
