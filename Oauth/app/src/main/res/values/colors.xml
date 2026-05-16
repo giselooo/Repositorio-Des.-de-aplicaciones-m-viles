@@ -1,0 +1,9 @@
+<resources>
+    <color name="navy_primary">#102A43</color> <!-- Azul profundo elegante -->
+    <color name="navy_light">#486581</color>   <!-- Azul grisáceo para textos secundarios -->
+    <color name="soft_gray">#F7F9FC</color>    <!-- Fondo casi blanco, muy limpio -->
+    <color name="border_color">#D9E2EC</color> <!-- Bordes sutiles -->
+    <color name="accent_blue">#334E68</color>  <!-- Color para estados activos -->
+    <color name="white">#FFFFFF</color>
+    <color name="error_red">#BA1A1A</color>
+</resources>
